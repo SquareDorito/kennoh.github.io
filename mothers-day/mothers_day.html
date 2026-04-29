@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Mother's Day</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blush: #f7d6de;
+    --blush-deep: #e8a4b4;
+    --rose: #c2637a;
+    --rose-dark: #8b3a50;
+    --cream: #fdf8f5;
+    --cream-dark: #f5ece6;
+    --ink: #3a2630;
+    --ink-light: #7a5560;
+    --tape: rgba(247,214,222,0.55);
+    --shadow: 0 4px 32px rgba(139,58,80,0.09);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── PAPER TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* ── FLOATING PETALS ── */
+  .petals-container {
+    position: fixed; inset: 0; pointer-events: none; z-index: 999; overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    top: -40px;
+    opacity: 0;
+    animation: petalFall linear infinite;
+  }
+  .petal svg { display: block; }
+  @keyframes petalFall {
+    0%   { transform: translateY(0) rotate(0deg) translateX(0);  opacity: 0; }
+    5%   { opacity: 0.6; }
+    95%  { opacity: 0.3; }
+    100% { transform: translateY(110vh) rotate(540deg) translateX(60px); opacity: 0; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    background: linear-gradient(170deg, #fff5f7 0%, var(--cream) 60%);
+    overflow: hidden;
+  }
+  .hero-flowers {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-flowers svg {
+    position: absolute;
+    opacity: 0.13;
+  }
+  .hero-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blush-deep);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--rose-dark);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: var(--ink-light);
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+  .scroll-hint {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+    color: var(--blush-deep);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .scroll-hint-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--blush-deep), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .divider {
+    width: 100%; max-width: 700px;
+    margin: 0 auto;
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0 2rem;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--blush-deep); opacity: 0.3; }
+  .divider-icon { color: var(--blush-deep); font-size: 1rem; opacity: 0.6; flex-shrink: 0; }
+
+  /* ── CHAPTER HEADER ── */
+  .chapter {
+    padding: 5rem 1.5rem 2rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .chapter-flag {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: var(--blush);
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+  }
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 400;
+    color: var(--rose-dark);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  .chapter-location {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+  }
+  .chapter-desc {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    line-height: 1.75;
+    margin-top: 0.75rem;
+  }
+
+  /* ── PHOTO CLUSTER ── */
+  .cluster-wrap {
+    padding: 1rem 1.5rem 4rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* Layout variants */
+  .cluster {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .cluster.single    { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cluster.duo       { grid-template-columns: 1fr 1fr; }
+  .cluster.trio      { grid-template-columns: 1fr 1fr 1fr; }
+  .cluster.featured  { grid-template-columns: 1.6fr 1fr; }
+  .cluster.featured-left { grid-template-columns: 1fr 1.6fr; }
+  .cluster.quad      { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+
+  /* Scrapbook photo card */
+  .photo-card {
+    position: relative;
+    background: #fff;
+    padding: 10px 10px 36px;
+    box-shadow: var(--shadow);
+    border-radius: 2px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: default;
+  }
+  .photo-card:hover {
+    transform: rotate(0deg) scale(1.03) translateY(-4px) !important;
+    box-shadow: 0 12px 48px rgba(139,58,80,0.18);
+    z-index: 10;
+  }
+
+  /* Random subtle rotations via nth-child */
+  .photo-card:nth-child(1) { transform: rotate(-1.2deg); }
+  .photo-card:nth-child(2) { transform: rotate(0.8deg); }
+  .photo-card:nth-child(3) { transform: rotate(-0.5deg); }
+  .photo-card:nth-child(4) { transform: rotate(1.4deg); }
+
+  /* Tape strip */
+  .photo-card::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: 50%; transform: translateX(-50%);
+    width: 48px; height: 22px;
+    background: var(--tape);
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  /* alternating tape positions */
+  .photo-card:nth-child(2)::before { left: 30%; top: -10px; transform: rotate(3deg); }
+  .photo-card:nth-child(3)::before { left: 65%; top: -10px; transform: rotate(-2deg); }
+
+  .photo-card img,
+  .photo-placeholder-img {
+    width: 100%;
+    /*aspect-ratio: 4/3;*/
+    object-fit: cover;
+    display: block;
+    border-radius: 1px;
+  }
+  .photo-placeholder-img {
+    background: linear-gradient(135deg, var(--blush) 0%, var(--cream-dark) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    color: var(--blush-deep);
+  }
+  .photo-card .caption {
+    position: absolute;
+    bottom: 6px; left: 10px; right: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.68rem;
+    color: var(--ink-light);
+    text-align: center;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── CLOSING LETTER ── */
+  .closing {
+    padding: 5rem 2rem 3rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .collage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 3.5rem;
+  }
+  .collage-grid .photo-card {
+    margin: 0;
+  }
+  .letter-wrap {
+    background: #fff;
+    border: 1px solid rgba(194,99,122,0.12);
+    border-radius: 4px;
+    padding: 3rem 3.5rem;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .letter-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 2.5rem;
+    width: calc(100% - 5rem);
+    height: 3px;
+    background: linear-gradient(90deg, var(--blush), var(--rose), var(--blush));
+  }
+  .letter-date {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blush-deep);
+    margin-bottom: 1.5rem;
+  }
+  .letter-body {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.08rem;
+    line-height: 1.9;
+    color: var(--ink);
+  }
+  .letter-sig {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--rose);
+    margin-top: 2rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 3rem 1rem 5rem;
+    color: var(--blush-deep);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .cluster.trio { grid-template-columns: 1fr 1fr; }
+    .cluster.featured, .cluster.featured-left { grid-template-columns: 1fr; }
+    .cluster.duo { grid-template-columns: 1fr; }
+    .collage-grid { grid-template-columns: repeat(2, 1fr); }
+    .letter-wrap { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div class="petals-container" id="petals"></div>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-flowers" aria-hidden="true">
+    <!-- Decorative SVG flowers -->
+    <svg width="320" height="320" style="top:-60px;left:-80px;" viewBox="0 0 200 200">
+      <g fill="var(--blush-deep)">
+        <ellipse cx="100" cy="60" rx="18" ry="38" opacity=".7"/>
+        <ellipse cx="100" cy="60" rx="18" ry="38" transform="rotate(45 100 100)" opacity=".7"/>
+        <ellipse cx="100" cy="60" rx="18" ry="38" transform="rotate(90 100 100)" opacity=".7"/>
+        <ellipse cx="100" cy="60" rx="18" ry="38" transform="rotate(135 100 100)" opacity=".7"/>
+        <circle cx="100" cy="100" r="16" fill="var(--rose)" opacity=".5"/>
+      </g>
+    </svg>
+    <svg width="280" height="280" style="bottom:-40px;right:-60px;" viewBox="0 0 200 200">
+      <g fill="var(--blush-deep)">
+        <ellipse cx="100" cy="60" rx="15" ry="34" opacity=".6"/>
+        <ellipse cx="100" cy="60" rx="15" ry="34" transform="rotate(60 100 100)" opacity=".6"/>
+        <ellipse cx="100" cy="60" rx="15" ry="34" transform="rotate(120 100 100)" opacity=".6"/>
+        <ellipse cx="100" cy="60" rx="15" ry="34" transform="rotate(180 100 100)" opacity=".6"/>
+        <ellipse cx="100" cy="60" rx="15" ry="34" transform="rotate(240 100 100)" opacity=".6"/>
+        <circle cx="100" cy="100" r="14" fill="var(--rose)" opacity=".4"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="hero-eyebrow">May 2026</p>
+  <h1 class="hero-title">Dear <em>Mom</em></h1>
+  <p class="hero-subtitle">For the past 28 and 30 years...</p>
+
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 1 — KOREA
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <span class="chapter-flag">Chapter One</span>
+  <h2 class="chapter-title">You raised us in Korea 🇰🇷</h2>
+  <p class="chapter-location">📍 Seoul, South Korea</p>
+  <p class="chapter-desc">My only gripe is that we didn't stay longer — my Korean would be so much better.</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster featured reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/2001_yoowon/img004.jpg" alt="Snow day at Yoowon - 2001">
+      <div class="caption">Snow day at Yoowon - 2001</div>
+    </div>
+    <div class="photo-card">
+      <img src="img/join_halloween/Join_Halloween047.jpg">
+    </div>
+  </div>
+  <div class="cluster duo reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/img038.jpg">
+    </div>
+    <div class="photo-card">
+      <img src="img/busan_beach.jpg" alt="Busan Beach Day">
+      <div class="caption">Busan Beach Day</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 2 — BIRTHDAY PARTIES
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <span class="chapter-flag">Chapter Two</span>
+  <h2 class="chapter-title">You hosted the best birthday parties</h2>
+  <!--<p class="chapter-desc">No one threw a party like you. Every single one felt like the biggest event of the year.</p>-->
+</div>
+<div class="cluster-wrap">
+  <div class="cluster duo reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/2008_eric_bday/DSC02928.JPG">
+      <div class="caption">Eric's 13th Birthday</div>
+    </div>
+    <div class="photo-card">
+      <img src="img/2008_eric_bday/DSC02860.JPG">
+    </div>
+  </div>
+  <div class="cluster duo reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/ken_bday/DSC02432.JPG">
+      <div class="caption">Ken's 10th Birthday</div>
+    </div>
+    <div class="photo-card">
+      <img src="img/2008_eric_bday/DSC02823.JPG">
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 3 — LOS ALTOS HILLS
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <span class="chapter-flag">Chapter Three</span>
+  <h2 class="chapter-title">We lived in a mansion in the woods</h2>
+  <p class="chapter-location">📍 Los Altos Hills, California</p>
+  <p class="chapter-desc">Sorry for all the bugs and lizards!</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster single reveal reveal-delay-1" style="max-width: 700px;">
+    <div class="photo-card">
+      <video
+        id="jump-rope-video"
+        src="vid/jumprope.mp4"
+        playsinline
+        preload="metadata"
+        controls
+        style="width:100%; display:block; border-radius:1px;"
+      ></video>
+      <div class="caption">Eric still hates cardio!</div>
+    </div>
+  </div>
+  <div class="cluster featured-left reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/2009_misc/spikey.jpeg">
+      <div class="caption">Spikey - 2009</div>
+    </div>
+    <div class="photo-card">
+      <img src="img/2008_los_altos_hills/country_club.JPG">
+      <div class="caption">Country Club Members 😎</div>
+    </div>
+  </div>
+  <div class="cluster single reveal reveal-delay-3">
+    <div class="photo-card">
+      <img src="img/2008_los_altos_hills/flowers.JPG">
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 5 — PASSIONS
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <span class="chapter-flag">Chapter Four</span>
+  <h2 class="chapter-title">You pushed us to pursue our passions</h2>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster single reveal reveal-delay-1">
+    <div class="photo-card">
+      <video
+        id="it-tech-camp-video"
+        src="vid/MOV03335.mp4"
+        playsinline
+        preload="metadata"
+        controls
+        style="width:100%; display:block; border-radius:1px;"
+      ></video>
+      <div class="caption">Umma! No recording!</div>
+    </div>
+  </div>
+  <div class="cluster featured-left reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/ken_cello/cello_headshot.JPG">
+    </div>
+    <div class="photo-card">
+      <img src="img/DSC02449.JPG">
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 6 — TRAVEL
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <span class="chapter-flag">Chapter Five</span>
+  <h2 class="chapter-title">We traveled together</h2>
+  <p class="chapter-location">📍 Cub Scout Camping Trip</p>
+  <p class="chapter-location" style="margin-top: 4px; display: block;">🗓️ Summer 2008</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster featured reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/2008_cub_scout_trip/mom_camping.JPG">
+    </div>
+    <div class="photo-card">
+      <img src="img/2008_cub_scout_trip/DSC02470.JPG">
+    </div>
+  </div>
+</div>
+<div class="chapter reveal" style="padding-top: 0px;">
+  <p class="chapter-location">📍 Half Moon Bay, CA</p>
+  <p class="chapter-location" style="margin-top: 4px; display: block;">🗓️ July 29, 2008</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster solo reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/DSC02730.JPG">
+    </div>
+  </div>
+</div>
+<div class="chapter reveal" style="padding-top: 0px;">
+  <p class="chapter-location">📍 South Korea</p>
+  <p class="chapter-location" style="margin-top: 4px; display: block;">🗓️ Winter 2008</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster trio reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/2008_seoul/DSC02975.JPG">
+      <div class="caption">Lotte World</div>
+    </div>
+    <div class="photo-card">
+      <img src="img/2008_seoul/DSC03064.JPG">
+      <div class="caption">Our future navy man 🫡</div>
+    </div>
+    <div class="photo-card">
+      <img src="img/2008_seoul/DSC03007.JPG">
+      <div class="caption">Wow another Eric salute</div>
+    </div>
+  </div>
+  <div class="cluster solo reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/2008_seoul/DSCO2974.JPG">
+    </div>
+  </div>
+</div>
+<div class="chapter reveal" style="padding-top: 0px;">
+  <p class="chapter-location">📍 New York City, NY</p>
+  <p class="chapter-location" style="margin-top: 4px; display: block;">🗓️ Thanksgiving, 2016</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster solo reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/IMG-927455891.JPG">
+    </div>
+  </div>
+</div>
+<div class="chapter reveal" style="padding-top: 0px;">
+  <p class="chapter-location">📍 South Korea</p>
+  <p class="chapter-location" style="margin-top: 4px; display: block;">🗓️ Winter 2022</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster featured reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/IMG_0949.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/IMG_0196.JPG">
+      <div class="caption">Our favorite Starbucks in Busan</div>
+    </div>
+  </div>
+  <div class="cluster duo reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/IMG_0993.jpeg">
+      <div class="caption">Mom's favorite</div>
+    </div>
+    <div class="photo-card">
+      <img src="img/IMG_0197.JPG">
+      <div class="caption">Homecoming</div>
+    </div>
+  </div>
+</div>
+<div class="chapter reveal" style="padding-top: 0px;">
+  <p class="chapter-desc">Wow we've been to Korea a lot</p>
+  <br>
+  <p class="chapter-location">📍 Seoul, South Korea</p>
+  <p class="chapter-location" style="margin-top: 4px; display: block;">🗓️ Summer 2025</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster featured reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/IMG_2158.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/IMG_1606.JPG">
+    </div>
+  </div>
+</div>
+<div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 7 — GRADUATION & SCHOOL
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <span class="chapter-flag">Chapter Six</span>
+  <h2 class="chapter-title">We graduated together</h2>
+  <p class="chapter-desc">Mom and Eric love collecting degrees.<br>Meanwhile I can't even find a graudation photo of myself...</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster trio reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/eric_graduations/img120.jpg">
+    </div>
+    <div class="photo-card">
+      <img src="img/eric_graduations/L1020055.JPG">
+    </div>
+    <div class="photo-card">
+      <img src="img/eric_graduations/IMG_2736.JPG">
+    </div>
+  </div>
+  <div class="cluster featured-left reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/eric_graduations/IMG_0277.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/mom_graduation.jpeg">
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 8 — COOKING
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <span class="chapter-flag">Chapter Seven</span>
+  <h2 class="chapter-title">Home Cooked Meals</h2>
+  <p class="chapter-desc">Although you claim you aren't a great chef — I remember every single meal as my favorite.</p>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster trio reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/mom_food/IMG_0468.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/mom_food/IMG_0294.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/mom_food/IMG_0889.jpeg">
+    </div>
+  </div>
+  <div class="cluster trio reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/mom_food/IMG_1819.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/mom_food/IMG_0469.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/mom_food/IMG_0885.jpeg">
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 9 — ERIC LAUGHING
+════════════════════════════════════════ -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">Only you could make Eric laugh like this</h2>
+</div>
+<div class="cluster-wrap">
+  <div class="cluster single reveal reveal-delay-1">
+    <div class="photo-card">
+      <img src="img/068.JPG">
+      <div class="caption">Such a rare sight!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CLOSING LETTER
+════════════════════════════════════════ -->
+<div class="closing">
+  <div class="divider reveal" style="margin-bottom: 4rem;"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+
+  <div class="collage-grid reveal">
+    <div class="photo-card"><img src="img/Everland I 177.jpg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/family_photos/IMG_1860.jpeg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/IMG_0611.JPG"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/IMG_1336.jpeg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/family_photos/IMG_0615.jpeg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/IMG_1501.jpg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/IMG_2191.jpg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/mom_cool.jpeg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/family_photos/IMG_0475.jpeg"><div class="caption"></div></div>
+  </div>
+  <div class="cluster single reveal reveal-delay-3" style="max-width: 900px; padding-bottom: 50px;">
+    <div class="photo-card">
+      <video
+        id="recap-video"
+        src="vid/recap.mp4"
+        playsinline
+        preload="metadata"
+        controls
+        style="width: 100%; display: block;"
+      ></video>
+    </div>
+  </div>
+
+  <div class="letter-wrap reveal">
+    <p class="letter-date">Mother's Day, 2026</p>
+    <p class="letter-body">
+    Happy Mother's Day!<br><br>
+    We are so blessed to have you as our mom. Looking back through these memories to create this card has really made me appreciate the journey we've taken together.
+      <br><br>
+      It definitely hasn't been easy, but that makes me feel so grateful for where we've ended up. Somehow you and Eric are soon to be graduates again - hard work pays off!
+      <br><br>
+      I'm so proud of us and excited to be back together in the States — looking forward to the next 30 years!
+    </p>
+    <p class="letter-sig">Love, Ken and Eric. ♡</p>
+  </div>
+</div>
+
+<footer>
+  <p>Made with love ✿ Happy Mother's Day</p>
+</footer>
+
+<script>
+  // ── SCROLL REVEAL ──────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── FLOATING PETALS ────────────────────────────
+  const container = document.getElementById('petals');
+  const petalColors = ['#f7d6de','#e8a4b4','#f5c8d6','#fce0e8','#e8c4d0'];
+
+  function makePetal() {
+    const el = document.createElement('div');
+    el.className = 'petal';
+    const size = 8 + Math.random() * 10;
+    el.style.cssText = `
+      left: ${Math.random() * 100}%;
+      animation-duration: ${6 + Math.random() * 8}s;
+      animation-delay: ${Math.random() * 8}s;
+    `;
+    // SVG petal shape
+    el.innerHTML = `<svg width="${size}" height="${size * 1.4}" viewBox="0 0 10 14">
+      <ellipse cx="5" cy="7" rx="4.5" ry="6.5"
+        fill="${petalColors[Math.floor(Math.random() * petalColors.length)]}"
+        opacity="${0.5 + Math.random() * 0.4}"
+        transform="rotate(${Math.random() * 40 - 20} 5 7)" />
+    </svg>`;
+    container.appendChild(el);
+    // Remove after animation to avoid DOM bloat
+    setTimeout(() => el.remove(), 18000);
+  }
+
+  // Spawn petals continuously
+  for (let i = 0; i < 12; i++) makePetal();
+  setInterval(makePetal, 900);
+
+  // ── PHOTO SWAP HELPER ─────────────────────────
+  // Users can replace placeholder divs with <img> tags.
+  // Or call: swapPhoto(index, 'your-image-url.jpg')
+  // index is 0-based across all photo-cards on the page.
+  window.swapPhoto = function(index, url, captionText) {
+    const cards = document.querySelectorAll('.photo-card');
+    if (!cards[index]) return;
+    const placeholder = cards[index].querySelector('.photo-placeholder-img');
+    if (placeholder) {
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = captionText || '';
+      placeholder.replaceWith(img);
+    }
+    if (captionText) {
+      const cap = cards[index].querySelector('.caption');
+      if (cap) cap.textContent = captionText;
+    }
+  };
+
+  // Unlock audio context on first interaction
+  let audioUnlocked = false;
+  document.addEventListener('click', () => { audioUnlocked = true; }, { once: true });
+  document.addEventListener('touchstart', () => { audioUnlocked = true; }, { once: true });
+
+  // Autoplay video with sound when scrolled into view
+  const video = document.getElementById('my-video');
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && audioUnlocked) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  videoObserver.observe(video);
+</script>
+</body>
+</html>
