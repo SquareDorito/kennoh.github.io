@@ -843,18 +843,20 @@
   document.addEventListener('touchstart', () => { audioUnlocked = true; }, { once: true });
 
   // Autoplay video with sound when scrolled into view
-  const video = document.getElementById('my-video');
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && audioUnlocked) {
-        video.play();
-      } else {
-        video.pause();
-      }
-    });
-  }, { threshold: 0.5 });
+  const video = document.getElementById('recap-video');
+  if (video) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && audioUnlocked) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.5 });
 
-  videoObserver.observe(video);
+    videoObserver.observe(video);
+  }
 </script>
 </body>
 </html>
