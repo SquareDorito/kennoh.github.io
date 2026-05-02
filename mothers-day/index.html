@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Happy Mother's Day</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 <style>
   :root {
     --blush: #f7d6de;
@@ -270,6 +271,47 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .photo-card .caption { display: none; }
+
+  .photo-meta {
+    position: absolute;
+    inset: 10px 10px 36px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    padding: 12px;
+    border-radius: 1px;
+    background: linear-gradient(180deg, rgba(23,18,20,0) 25%, rgba(23,18,20,0.82) 100%);
+    color: #fff;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .photo-card:hover .photo-meta,
+  .photo-card:focus-within .photo-meta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .photo-meta-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
+  }
+  .photo-meta-value {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  }
+  .photo-meta-empty {
+    color: rgba(255,255,255,0.78);
+    font-style: italic;
+  }
 
   /* ── SCROLL REVEAL ── */
   .reveal {
@@ -288,7 +330,7 @@
   /* ── CLOSING LETTER ── */
   .closing {
     padding: 5rem 2rem 3rem;
-    max-width: 720px;
+    max-width: 980px;
     margin: 0 auto;
   }
   .collage-grid {
@@ -410,8 +452,7 @@
 <div class="cluster-wrap">
   <div class="cluster featured reveal reveal-delay-1">
     <div class="photo-card">
-      <img src="img/2001_yoowon/img004.jpg" alt="Snow day at Yoowon - 2001">
-      <div class="caption">Snow day at Yoowon - 2001</div>
+      <img src="img/2001_yoowon/img004.jpg">
     </div>
     <div class="photo-card">
       <img src="img/join_halloween/Join_Halloween047.jpg">
@@ -423,7 +464,6 @@
     </div>
     <div class="photo-card">
       <img src="img/busan_beach.jpg" alt="Busan Beach Day">
-      <div class="caption">Busan Beach Day</div>
     </div>
   </div>
 </div>
@@ -442,7 +482,6 @@
   <div class="cluster duo reveal reveal-delay-1">
     <div class="photo-card">
       <img src="img/2008_eric_bday/DSC02928.JPG">
-      <div class="caption">Eric's 13th Birthday</div>
     </div>
     <div class="photo-card">
       <img src="img/2008_eric_bday/DSC02860.JPG">
@@ -451,7 +490,6 @@
   <div class="cluster duo reveal reveal-delay-2">
     <div class="photo-card">
       <img src="img/ken_bday/DSC02432.JPG">
-      <div class="caption">Ken's 10th Birthday</div>
     </div>
     <div class="photo-card">
       <img src="img/2008_eric_bday/DSC02823.JPG">
@@ -481,17 +519,14 @@
         controls
         style="width:100%; display:block; border-radius:1px;"
       ></video>
-      <div class="caption">Eric still hates cardio!</div>
     </div>
   </div>
   <div class="cluster featured-left reveal reveal-delay-2">
     <div class="photo-card">
       <img src="img/2009_misc/spikey.jpeg">
-      <div class="caption">Spikey - 2009</div>
     </div>
     <div class="photo-card">
       <img src="img/2008_los_altos_hills/country_club.JPG">
-      <div class="caption">Country Club Members 😎</div>
     </div>
   </div>
   <div class="cluster single reveal reveal-delay-3">
@@ -521,7 +556,6 @@
         controls
         style="width:100%; display:block; border-radius:1px;"
       ></video>
-      <div class="caption">Umma! No recording!</div>
     </div>
   </div>
   <div class="cluster featured-left reveal reveal-delay-2">
@@ -574,15 +608,12 @@
   <div class="cluster trio reveal reveal-delay-1">
     <div class="photo-card">
       <img src="img/2008_seoul/DSC02975.JPG">
-      <div class="caption">Lotte World</div>
     </div>
     <div class="photo-card">
       <img src="img/2008_seoul/DSC03064.JPG">
-      <div class="caption">Our future navy man 🫡</div>
     </div>
     <div class="photo-card">
       <img src="img/2008_seoul/DSC03007.JPG">
-      <div class="caption">Wow another Eric salute</div>
     </div>
   </div>
   <div class="cluster solo reveal reveal-delay-2">
@@ -613,17 +644,14 @@
     </div>
     <div class="photo-card">
       <img src="img/IMG_0196.JPG">
-      <div class="caption">Our favorite Starbucks in Busan</div>
     </div>
   </div>
   <div class="cluster duo reveal reveal-delay-2">
     <div class="photo-card">
       <img src="img/IMG_0993.jpeg">
-      <div class="caption">Mom's favorite</div>
     </div>
     <div class="photo-card">
       <img src="img/IMG_0197.JPG">
-      <div class="caption">Homecoming</div>
     </div>
   </div>
 </div>
@@ -651,7 +679,7 @@
 <div class="chapter reveal">
   <span class="chapter-flag">Chapter Six</span>
   <h2 class="chapter-title">We graduated together</h2>
-  <p class="chapter-desc">Mom and Eric love collecting degrees.<br>Meanwhile I can't even find a graudation photo of myself...</p>
+  <p class="chapter-desc">Mom and Eric love collecting degrees.<br>Meanwhile Ken can't find his graudation photos...</p>
 </div>
 <div class="cluster-wrap">
   <div class="cluster trio reveal reveal-delay-1">
@@ -663,6 +691,14 @@
     </div>
     <div class="photo-card">
       <img src="img/eric_graduations/IMG_2736.JPG">
+    </div>
+  </div>
+  <div class="cluster duo reveal reveal-delay-2">
+    <div class="photo-card">
+      <img src="img/eric_professor_chang.jpeg">
+    </div>
+    <div class="photo-card">
+      <img src="img/eric_supply_corp_graudation.jpeg">
     </div>
   </div>
   <div class="cluster featured-left reveal reveal-delay-2">
@@ -683,7 +719,7 @@
 <div class="chapter reveal">
   <span class="chapter-flag">Chapter Seven</span>
   <h2 class="chapter-title">Home Cooked Meals</h2>
-  <p class="chapter-desc">Although you claim you aren't a great chef — I remember every single meal as my favorite.</p>
+  <p class="chapter-desc">Although you claim you aren't a great chef — we remember every single meal as my favorite.</p>
 </div>
 <div class="cluster-wrap">
   <div class="cluster trio reveal reveal-delay-1">
@@ -722,7 +758,6 @@
   <div class="cluster single reveal reveal-delay-1">
     <div class="photo-card">
       <img src="img/068.JPG">
-      <div class="caption">Such a rare sight!</div>
     </div>
   </div>
 </div>
@@ -734,15 +769,18 @@
   <div class="divider reveal" style="margin-bottom: 4rem;"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
 
   <div class="collage-grid reveal">
-    <div class="photo-card"><img src="img/Everland_177.jpg"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/family_photos/IMG_1860.jpeg"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/IMG_0611.JPG"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/IMG_1336.jpeg"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/family_photos/IMG_0615.jpeg"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/IMG_1501.jpg"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/IMG_2191.jpg"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/mom_cool.jpeg"><div class="caption"></div></div>
-    <div class="photo-card"><img src="img/family_photos/IMG_0475.jpeg"><div class="caption"></div></div>
+    <div class="photo-card"><img src="img/Everland_177.jpg"></div>
+    <div class="photo-card"><img src="img/family_photos/IMG_1860.jpeg"></div>
+    <div class="photo-card"><img src="img/IMG_0611.JPG"></div>
+    <div class="photo-card"><img src="img/IMG_1336.jpeg"></div>
+    <div class="photo-card"><img src="img/family_photos/IMG_0615.jpeg"></div>
+    <div class="photo-card"><img src="img/IMG_1501.jpg"></div>
+    <div class="photo-card"><img src="img/IMG_2191.jpg"></div>
+    <div class="photo-card"><img src="img/mom_cool.jpeg"></div>
+    <div class="photo-card"><img src="img/family_photos/IMG_0475.jpeg"></div>
+  </div>
+  <div class="cluster single reveal reveal-delay-3" style="max-width: 900px; padding-bottom: 50px;">
+    <div class="photo-card"><img src="img/eric_farewell_dinner.jpeg"></div>
   </div>
   <div class="cluster single reveal reveal-delay-3" style="max-width: 900px; padding-bottom: 50px;">
     <div class="photo-card">
@@ -761,11 +799,11 @@
     <p class="letter-date">Mother's Day, 2026</p>
     <p class="letter-body">
     Happy Mother's Day!<br><br>
-    We are so blessed to have you as our mom. Looking back through these memories to create this card has really made me appreciate the journey we've taken together.
+    We are so blessed to have you as our mom. Looking back through these memories to create this card has really made us appreciate the journey we've taken together.
       <br><br>
       It definitely hasn't been easy, but that makes me feel so grateful for where we've ended up. Somehow you and Eric are soon to be graduates again - hard work pays off!
       <br><br>
-      I'm so proud of us and excited to be back together in the States — looking forward to the next 30 years!
+      We're so proud to be your children and excited to be back together in the States — looking forward to the next 30 years!
     </p>
     <p class="letter-sig">Love, Ken and Eric. ♡</p>
   </div>
@@ -836,6 +874,102 @@
       if (cap) cap.textContent = captionText;
     }
   };
+
+  const PHOTO_DATA = {
+    'img/2001_yoowon/img004.jpg': { description: 'Snow Day', time: '2001', location: 'Yoowon, Seoul, South Korea' },
+    'img/join_halloween/Join_Halloween047.jpg': { location: 'Join School, South Korea' },
+    'img/busan_beach.jpg': { description: 'Busan Beach Day' },
+    'img/2008_eric_bday/DSC02928.JPG': { description: "Eric's 13th Birthday", time: '2008-12-06' },
+    'img/2008_eric_bday/DSC02860.JPG': { time: '2008-12-06' },
+    'img/ken_bday/DSC02432.JPG': { description: "Ken's 10th Birthday", time: '2008-04-26' },
+    'img/2008_eric_bday/DSC02823.JPG': { time: '2008-12-06' },
+    'img/2009_misc/spikey.jpeg': { time: '2009', description: "Cant believe Spikey's still alive!" },
+    'img/2008_los_altos_hills/country_club.JPG': { description: 'Country Club Members 😎' },
+    'img/2008_los_altos_hills/flowers.JPG': { time: '2009-07-24' },
+    'img/DSC02449.JPG': { time: '2008-05-04' },
+    'img/DSC02730.JPG': { time: '2008-07-29', description: 'An iconic family photo' },
+    'img/2008_cub_scout_trip/mom_camping.JPG': { time: '2008-06-01' },
+    'img/2008_cub_scout_trip/DSC02470.JPG': { time: '2008-06-01' },
+    'img/2008_seoul/DSC02975.JPG': { description: 'Lotte World' },
+    'img/2008_seoul/DSC03007.JPG': { description: 'Wow another Eric salute' },
+    'img/2008_seoul/DSC03064.JPG': { description: 'Our future navy man 🫡' },
+    'img/2008_seoul/DSCO2974.JPG': { time: '2008-12-24' },
+    'img/IMG-927455891.JPG': { time: '2016-11-24', description: "Ken was stressed with college apps, and we switched haircuts!" },
+    'img/IMG_0949.jpeg': { time: '2022-12-23', location: 'Busan, South Korea', description: 'Reunited with grandma!' },
+    'img/IMG_0196.JPG': { description: "Our favorite Starbucks in Busan", location: 'Busan, South Korea' },
+    'img/IMG_0993.jpeg': { description: "Mom's favorite sushi restaurant!", time: '2022-12-28' },
+    'img/IMG_0197.JPG': { description: 'Homecoming' },
+    'img/IMG_2158.jpeg': { time: '2025-06-25', location: 'Busan, South Korea' },
+    'img/IMG_1606.JPG': { time: '2025-06-26', location: 'Busan, South Korea' },
+    'img/eric_graduations/L1020055.JPG': { time: '2014-05-29', description: "Eric's Gunn High School Graduation" },
+    'img/eric_graduations/IMG_2736.JPG': { time: '2018-05-26', location: 'Ithaca, New York', description: "Eric's Cornell Graaduation" },
+    'img/eric_graduations/IMG_0277.jpeg': { time: '2021-09-17', location: 'Newport, Rhode Island', description: "Eric's OCS Graduation" },
+    'img/mom_graduation.jpeg': { time: '2025-09-05' },
+    'img/eric_professor_chang.jpeg': { time: '2028-05', description: 'Eric with his thesis advisor, Professor Chang'},
+    'img/eric_supply_corp_graudation.jpeg': { time: '2022-04', description: "Eric's Supply Corps School Graduation" },
+    'img/mom_food/IMG_0468.jpeg': { time: '2024-12-16' },
+    'img/mom_food/IMG_0294.jpeg': { time: '2024-11-02', location: 'Stanford, California' },
+    'img/mom_food/IMG_0889.jpeg': { time: '2025-05-04', location: 'Stanford, California' },
+    'img/mom_food/IMG_1819.jpeg': { time: '2025-10-02', location: 'Stanford, California' },
+    'img/mom_food/IMG_0469.jpeg': { time: '2024-12-16', location: 'Stanford, California' },
+    'img/mom_food/IMG_0885.jpeg': { time: '2025-05-03' },
+    'img/Everland_177.jpg': { location: 'Everland, South Korea' },
+    'img/family_photos/IMG_1860.jpeg': { time: '2024-12-21', description: "Our lasting family tradition - lunch at Evvia" },
+    'img/IMG_0611.JPG': { time: '2019-03-04', location: 'Stanford, California' },
+    'img/IMG_1336.jpeg': { time: '2023-09-27', location: 'Stanford, California' },
+    'img/family_photos/IMG_0615.jpeg': { time: '2025-12-26', location: 'Stanford, California' , description: "Fancy wine to celebrate Eric's MBA acceptance!" },
+    'img/IMG_1501.jpg': { time: '2024-05-07' },
+    'img/IMG_2191.jpg': { time: '2025-06-27' },
+    'img/family_photos/IMG_0475.jpeg': { time: '2024-12-21', location: 'Stanford, California' },
+    'img/ken_cello/cello_headshot.JPG': { time: '2013-05-04' },
+    'img/068.JPG': { description: 'Such a rare sight!', time: '2009-07-02', location: 'Los Altos Hills, California' },
+    'img/eric_farewell_dinner.jpeg': { description: "Eric's farewell dinner before starting Navy service", time: '2021-05' }
+  };
+
+  function ensureMeta(card) {
+    if (card.querySelector('.photo-meta')) return;
+    const media = card.querySelector('img');
+    if (!media) return;
+    const src = media.getAttribute('src') || '';
+    const meta = PHOTO_DATA[src];
+    if (!meta) return;
+    const location = meta.location;
+    const hasTime = Boolean(meta.time);
+    const hasLocation = Boolean(location);
+    const hasDescription = Boolean(meta.description);
+    if (!hasTime && !hasLocation && !hasDescription) return;
+    const box = document.createElement('div');
+    box.className = 'photo-meta';
+    const parts = [];
+    if (hasDescription) {
+      parts.push(`
+        <div>
+          <div class="photo-meta-label">Description</div>
+          <div class="photo-meta-value">${meta.description}</div>
+        </div>
+      `);
+    }
+    if (hasTime) {
+      parts.push(`
+        <div>
+          <div class="photo-meta-label">Captured</div>
+          <div class="photo-meta-value">${meta.time}</div>
+        </div>
+      `);
+    }
+    if (hasLocation) {
+      parts.push(`
+        <div>
+          <div class="photo-meta-label">Location</div>
+          <div class="photo-meta-value">${location}</div>
+        </div>
+      `);
+    }
+    box.innerHTML = parts.join('');
+    card.appendChild(box);
+  }
+
+  document.querySelectorAll('.photo-card').forEach(ensureMeta);
 
   // Unlock audio context on first interaction
   let audioUnlocked = false;
