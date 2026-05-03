@@ -173,6 +173,10 @@
     line-height: 1.3;
     margin-bottom: 0.75rem;
   }
+  .chapter-title.nowrap {
+    white-space: nowrap;
+    font-size: clamp(1.35rem, 3.2vw, 2.2rem);
+  }
   .chapter-location {
     display: inline-flex; align-items: center; gap: 5px;
     font-size: 0.78rem;
@@ -329,7 +333,7 @@
 
   /* ── CLOSING LETTER ── */
   .closing {
-    padding: 5rem 2rem 3rem;
+    padding: 0rem 2rem 3rem;
     max-width: 980px;
     margin: 0 auto;
   }
@@ -343,12 +347,22 @@
     margin: 0;
   }
   .letter-wrap {
-    background: #fff;
+    background: linear-gradient(180deg, #fff1f5 0%, #fde8ef 100%);
     border: 1px solid rgba(194,99,122,0.12);
     border-radius: 4px;
     padding: 3rem 3.5rem;
     box-shadow: var(--shadow);
     position: relative;
+    overflow: hidden;
+    min-height: 460px;
+  }
+  .letter-wrap.is-reveal-card {
+    cursor: pointer;
+    user-select: none;
+  }
+  .letter-wrap.is-reveal-card:focus-visible {
+    outline: 3px solid rgba(226, 140, 162, 0.35);
+    outline-offset: 4px;
   }
   .letter-wrap::before {
     content: '';
@@ -357,6 +371,95 @@
     width: calc(100% - 5rem);
     height: 3px;
     background: linear-gradient(90deg, var(--blush), var(--rose), var(--blush));
+  }
+  .letter-reveal-shell {
+    position: relative;
+    z-index: 1;
+    display: block;
+    min-height: 460px;
+  }
+  .letter-teaser {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    gap: 0.9rem;
+    text-align: center;
+    padding: 1rem;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .letter-teaser h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3.2vw, 2rem);
+    font-weight: 400;
+    color: var(--rose-dark);
+  }
+  .letter-teaser p {
+    color: var(--ink-light);
+    line-height: 1.7;
+    max-width: 30rem;
+  }
+  .letter-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(194,99,122,0.18);
+    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    color: var(--rose-dark);
+    background: linear-gradient(180deg, #fff, #fff8fa);
+    box-shadow: 0 6px 18px rgba(139,58,80,0.06);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .letter-full {
+    position: absolute;
+    inset: 0;
+    display: block;
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+    pointer-events: none;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .letter-wrap.is-open .letter-teaser {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+  .letter-wrap.is-open .letter-full {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .heart-burst-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .burst-heart {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    font-size: var(--size);
+    color: var(--color);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    animation: heartBurst 1.15s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    filter: drop-shadow(0 4px 10px rgba(139,58,80,0.15));
+  }
+  @keyframes heartBurst {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.35); }
+    10% { opacity: 1; }
+    100% {
+      opacity: 0;
+      transform:
+        translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+        scale(1.15)
+        rotate(var(--rot));
+    }
   }
   .letter-date {
     font-size: 0.72rem;
@@ -378,6 +481,15 @@
     color: var(--rose);
     margin-top: 2rem;
   }
+  .letter-hint {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blush-deep);
+  }
+  .letter-body-wrap {
+    min-height: 460px;
+  }
 
   /* ── FOOTER ── */
   footer {
@@ -395,6 +507,11 @@
     .cluster.duo { grid-template-columns: 1fr; }
     .collage-grid { grid-template-columns: repeat(2, 1fr); }
     .letter-wrap { padding: 2rem 1.5rem; }
+    .letter-wrap,
+    .letter-reveal-shell,
+    .letter-body-wrap {
+      min-height: 520px;
+    }
   }
 </style>
 </head>
@@ -752,7 +869,7 @@
      CHAPTER 9 — ERIC LAUGHING
 ════════════════════════════════════════ -->
 <div class="chapter reveal">
-  <h2 class="chapter-title">Only you could make Eric laugh like this</h2>
+  <h2 class="chapter-title nowrap">Only you could make Eric laugh like this</h2>
 </div>
 <div class="cluster-wrap">
   <div class="cluster single reveal reveal-delay-1">
@@ -765,8 +882,13 @@
 <!-- ═══════════════════════════════════════
      CLOSING LETTER
 ════════════════════════════════════════ -->
+<div class="divider reveal" style="margin-bottom: 4rem;"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
 <div class="closing">
-  <div class="divider reveal" style="margin-bottom: 4rem;"><div class="divider-line"></div><div class="divider-icon">✿</div><div class="divider-line"></div></div>
+  <div class="chapter reveal" style="padding-top: 0; padding-bottom: 4rem;">
+  <span class="chapter-flag">Last Chapter</span>
+  <h2 class="chapter-title">A Trip Down Memory Lane</h2>
+  <p class="chapter-desc">Various of our favorite memories, with many more to come!</p>
+  </div>
 
   <div class="collage-grid reveal">
     <div class="photo-card"><img src="img/Everland_177.jpg"></div>
@@ -796,16 +918,24 @@
   </div>
 
   <div class="letter-wrap reveal">
-    <p class="letter-date">Mother's Day, 2026</p>
-    <p class="letter-body">
-    Happy Mother's Day!<br><br>
-    We are so blessed to have you as our mom. Looking back through these memories to create this card has really made us appreciate the journey we've taken together.
-      <br><br>
-      It definitely hasn't been easy, but that makes me feel so grateful for where we've ended up. Somehow you and Eric are soon to be graduates again - hard work pays off!
-      <br><br>
-      We're so proud to be your children and excited to be back together in the States — looking forward to the next 30 years!
-    </p>
-    <p class="letter-sig">Love, Ken and Eric. ♡</p>
+    <div class="letter-reveal-shell" role="button" tabindex="0" aria-expanded="false" aria-label="Reveal the final Mother's Day message">
+      <div class="letter-teaser">
+        <h3>For Mom's eyes only</h3>
+        <div class="letter-cta">Open the message</div>
+      </div>
+      <div class="letter-full letter-body-wrap">
+        <p class="letter-date">Mother's Day, 2026</p>
+        <p class="letter-body">
+        Happy Mother's Day!<br><br>
+        We are so blessed to have you as our mom. Looking back through these memories to create this card has really made us appreciate the journey we've taken together.
+          <br><br>
+          It definitely hasn't been easy, but that makes me feel so grateful for where we've ended up. Somehow you and Eric are soon to be graduates again - hard work pays off!
+          <br><br>
+          We're so proud to be your children and excited to be back together in the States — looking forward to the next 30 years!
+        </p>
+        <p class="letter-sig">Love, Ken and Eric. ♡</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -970,6 +1100,61 @@
   }
 
   document.querySelectorAll('.photo-card').forEach(ensureMeta);
+
+  // ── FINAL LETTER REVEAL ───────────────────────
+  const letterCard = document.querySelector('.letter-wrap');
+  const letterShell = letterCard?.querySelector('.letter-reveal-shell');
+  if (letterCard && letterShell) {
+    letterCard.classList.add('is-reveal-card');
+
+    function spawnHearts(clientX, clientY) {
+      const rect = letterCard.getBoundingClientRect();
+      const burst = document.createElement('div');
+      burst.className = 'heart-burst-layer';
+      letterCard.appendChild(burst);
+
+      const x = Math.max(24, Math.min(clientX - rect.left, rect.width - 24));
+      const y = Math.max(24, Math.min(clientY - rect.top, rect.height - 24));
+      const hearts = ['♡', '♥', '💗', '💕', '💞'];
+      const colors = ['#c2637a', '#e8a4b4', '#f08aa0', '#d66a86', '#f7b7c6'];
+      for (let i = 0; i < 14; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'burst-heart';
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 40 + Math.random() * 120;
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.setProperty('--x', `${x}px`);
+        heart.style.setProperty('--y', `${y}px`);
+        heart.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+        heart.style.setProperty('--dy', `${Math.sin(angle) * distance - 20}px`);
+        heart.style.setProperty('--rot', `${Math.random() * 220 - 110}deg`);
+        heart.style.setProperty('--size', `${14 + Math.random() * 18}px`);
+        heart.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+        heart.style.animationDelay = `${Math.random() * 0.05}s`;
+        burst.appendChild(heart);
+      }
+      setTimeout(() => burst.remove(), 1500);
+    }
+
+    function openLetter(event) {
+      if (letterCard.classList.contains('is-open')) return;
+      letterCard.classList.add('is-open');
+      letterShell.setAttribute('aria-expanded', 'true');
+      const rect = letterCard.getBoundingClientRect();
+      const point = event instanceof MouseEvent
+        ? { x: event.clientX, y: event.clientY }
+        : { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      spawnHearts(point.x, point.y);
+    }
+
+    letterShell.addEventListener('click', openLetter);
+    letterShell.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLetter(event);
+      }
+    });
+  }
 
   // Unlock audio context on first interaction
   let audioUnlocked = false;
