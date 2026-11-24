@@ -4,43 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ken Noh</title>
-  <meta name="description" content="Ken Noh — Software Engineer @ Jain Global. Previously at IMC Trading and Zip. Running enjoyer and aspiring competitive eater." />
+  <meta name="description" content="Ken Noh — Jain Global, previously IMC Trading and Zip. Running enjoyer and aspiring competitive eater." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2318181b'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='48' fill='%23fafaf9'>KN</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23ff5e2b' stroke='%2318181b' stroke-width='6'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='44' fill='%2318181b'>KN</text></svg>" />
   <style>
     :root {
-      --bg: #fbfaf8;
-      --surface: rgba(255, 255, 255, 0.78);
-      --surface-hover: #ffffff;
-      --text: #18181b;
-      --muted: #52525b;
-      --subtle: #71717a;
-      --border: rgba(24, 24, 27, 0.1);
-      --border-hover: rgba(24, 24, 27, 0.24);
-      --accent: #ea580c;
-      --accent-soft: rgba(234, 88, 12, 0.1);
-      --dot: rgba(24, 24, 27, 0.07);
-      --spotlight: rgba(234, 88, 12, 0.06);
-      --pill-bg: rgba(24, 24, 27, 0.045);
+      --bg: #fdf6e9;
+      --grid: rgba(24, 24, 27, 0.06);
+      --ink: #18181b;
+      --muted: #3f3f46;
+      --paper: #fffdf9;
+      --shadow: #18181b;
+      --sticker-orange: #ff7a45;
+      --sticker-yellow: #ffd84d;
+      --sticker-mint: #6ee7b7;
+      --sticker-blue: #7dd3fc;
+      --sticker-pink: #f9a8d4;
+      --sticker-lavender: #c4b5fd;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0c0c0e;
-        --surface: rgba(24, 24, 27, 0.72);
-        --surface-hover: rgba(30, 30, 35, 0.92);
-        --text: #f4f4f5;
-        --muted: #a1a1aa;
-        --subtle: #71717a;
-        --border: rgba(255, 255, 255, 0.09);
-        --border-hover: rgba(255, 255, 255, 0.22);
-        --accent: #fb923c;
-        --accent-soft: rgba(251, 146, 60, 0.12);
-        --dot: rgba(255, 255, 255, 0.055);
-        --spotlight: rgba(251, 146, 60, 0.09);
-        --pill-bg: rgba(255, 255, 255, 0.06);
+        --bg: #16161a;
+        --grid: rgba(255, 255, 255, 0.055);
+        --ink: #f4f4f5;
+        --muted: #d4d4d8;
+        --paper: #222228;
+        --shadow: #09090b;
+        --sticker-orange: #ff7a45;
+        --sticker-yellow: #facc15;
+        --sticker-mint: #34d399;
+        --sticker-blue: #38bdf8;
+        --sticker-pink: #f472b6;
+        --sticker-lavender: #a78bfa;
       }
     }
 
@@ -53,248 +51,144 @@
     body {
       min-height: 100vh;
       background-color: var(--bg);
-      background-image: radial-gradient(var(--dot) 1px, transparent 1px);
-      background-size: 22px 22px;
-      color: var(--text);
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-      padding: 2.5rem 1.25rem 4rem;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      padding: 3rem 1.25rem 6rem;
     }
 
     .container {
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
-    }
-
-    /* Top utility bar */
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 3.5rem;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.78rem;
-      color: var(--subtle);
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.3rem 0.65rem;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      border: 1px solid var(--border);
-    }
-
-    .pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
-      animation: pulse 2.4s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45); }
-      70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-    }
-
-    .theme-btn {
-      appearance: none;
-      background: var(--pill-bg);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: inherit;
-      font-size: 0.78rem;
-      padding: 0.3rem 0.65rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: border-color 0.15s ease, color 0.15s ease;
-    }
-
-    .theme-btn:hover {
-      border-color: var(--border-hover);
-      color: var(--text);
     }
 
     /* Hero */
     header {
-      margin-bottom: 3rem;
-      animation: fadeUp 0.45s ease both;
+      margin-bottom: 2.75rem;
+    }
+
+    .name-wrap {
+      display: inline-block;
+      position: relative;
+      margin-bottom: 1.25rem;
     }
 
     h1 {
-      font-size: clamp(1.9rem, 4vw, 2.35rem);
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+      font-size: clamp(2.5rem, 7vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      background: var(--sticker-yellow);
+      color: #18181b;
+      padding: 0.35rem 0.9rem;
+      border: 2.5px solid #18181b;
+      border-radius: 14px;
+      box-shadow: 5px 5px 0 var(--shadow);
+      transform: rotate(-1.2deg);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .bio {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 58ch;
-      margin-bottom: 1.35rem;
+    .name-wrap:hover h1 {
+      transform: rotate(0deg) translate(-1px, -1px);
     }
 
-    .bio strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .bio .fun {
-      display: inline-block;
-      margin-top: 0.45rem;
-      color: var(--text);
-    }
-
-    .actions {
+    /* Sticker Pills */
+    .sticker-row {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       gap: 0.6rem;
-    }
-
-    .btn-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      padding: 0.42rem 0.8rem;
-      border-radius: 8px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-      font-family: inherit;
-      transition: border-color 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
-    }
-
-    .btn-link:hover {
-      border-color: var(--border-hover);
-      background: var(--surface-hover);
-      transform: translateY(-1px);
-    }
-
-    .btn-link .arrow {
-      color: var(--subtle);
-      font-size: 0.8rem;
-      transition: transform 0.15s ease, color 0.15s ease;
-    }
-
-    .btn-link:hover .arrow {
-      color: var(--accent);
-      transform: translate(1px, -1px);
-    }
-
-    /* Section */
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
       margin-bottom: 1rem;
     }
 
-    h2 {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--subtle);
-    }
-
-    /* Experience pills */
-    .exp-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2.75rem;
-      animation: fadeUp 0.55s ease both;
-    }
-
-    .exp-pill {
+    .sticker {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      font-size: 0.82rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      background: var(--pill-bg);
-      border: 1px solid var(--border);
-      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #18181b;
+      padding: 0.35rem 0.75rem;
+      border: 2px solid #18181b;
+      border-radius: 999px;
+      box-shadow: 3px 3px 0 var(--shadow);
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+      user-select: none;
     }
 
-    .exp-pill.now {
-      color: var(--text);
-      background: var(--accent-soft);
-      border-color: transparent;
+    .sticker:hover {
+      transform: rotate(0deg) translate(-1px, -2px) scale(1.03);
+      box-shadow: 4px 5px 0 var(--shadow);
     }
 
-    .exp-pill .role {
+    .sticker .tag {
       font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.72rem;
-      color: var(--subtle);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      background: rgba(24, 24, 27, 0.12);
+      padding: 0.08rem 0.38rem;
+      border-radius: 999px;
     }
 
-    .exp-pill.now .role {
-      color: var(--accent);
+    .s-now { background: var(--sticker-orange); transform: rotate(-1deg); }
+    .s-prev1 { background: var(--sticker-blue); transform: rotate(1.1deg); }
+    .s-prev2 { background: var(--sticker-lavender); transform: rotate(-0.8deg); }
+    .s-run { background: var(--sticker-mint); transform: rotate(0.7deg); }
+    .s-eat { background: var(--sticker-pink); transform: rotate(-1.1deg); }
+
+    /* Section header */
+    .section-label {
+      display: inline-block;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--paper);
+      color: var(--ink);
+      border: 2px solid #18181b;
+      padding: 0.22rem 0.6rem;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 var(--shadow);
+      margin-bottom: 1.1rem;
+      transform: rotate(-0.6deg);
     }
 
     /* Project Cards */
     .projects {
       display: grid;
-      gap: 0.85rem;
-      animation: fadeUp 0.65s ease both;
+      gap: 1.1rem;
     }
 
     .card {
       position: relative;
       display: block;
       text-decoration: none;
-      color: inherit;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.1rem 1.25rem;
-      backdrop-filter: blur(8px);
-      overflow: hidden;
-      transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+      color: var(--ink);
+      background: var(--paper);
+      border: 2.5px solid #18181b;
+      border-radius: 14px;
+      padding: 1.15rem 1.3rem;
+      box-shadow: 4px 4px 0 var(--shadow);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        420px circle at var(--mx, 50%) var(--my, 50%),
-        var(--spotlight),
-        transparent 60%
-      );
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      pointer-events: none;
-    }
+    .card:nth-child(1) { transform: rotate(-0.5deg); }
+    .card:nth-child(2) { transform: rotate(0.55deg); }
+    .card:nth-child(3) { transform: rotate(-0.4deg); }
 
     .card:hover {
-      border-color: var(--border-hover);
-      background: var(--surface-hover);
-      transform: translateY(-2px);
+      transform: rotate(0deg) translate(-2px, -3px);
+      box-shadow: 7px 7px 0 var(--shadow);
     }
 
-    .card:hover::before {
-      opacity: 1;
+    .card:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--shadow);
     }
 
     .card-top {
@@ -308,59 +202,60 @@
     .card-title-wrap {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.6rem;
     }
 
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 2px solid #18181b;
+      flex-shrink: 0;
+    }
+
+    .card:nth-child(1) .swatch { background: var(--sticker-orange); }
+    .card:nth-child(2) .swatch { background: var(--sticker-pink); }
+    .card:nth-child(3) .swatch { background: var(--sticker-mint); }
+
     .card-title {
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: -0.01em;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
     }
 
     .card-arrow {
-      color: var(--subtle);
-      font-size: 0.9rem;
-      transition: transform 0.15s ease, color 0.15s ease;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.15s ease;
     }
 
     .card:hover .card-arrow {
-      color: var(--accent);
       transform: translate(2px, -2px);
     }
 
-    .card-tag {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.72rem;
-      color: var(--subtle);
-      padding: 0.18rem 0.5rem;
-      border-radius: 6px;
-      background: var(--pill-bg);
-      white-space: nowrap;
-    }
-
     .card-desc {
-      font-size: 0.915rem;
+      font-size: 0.95rem;
       color: var(--muted);
     }
 
+    /* Fixed Bottom Bar */
     footer {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 50;
-      background: var(--surface);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border);
-      padding: 0.9rem 1.25rem;
+      background: var(--paper);
+      border-top: 2.5px solid #18181b;
+      padding: 0.85rem 1.25rem;
       font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.75rem;
-      color: var(--subtle);
+      font-size: 0.78rem;
+      font-weight: 700;
     }
 
     .footer-inner {
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -371,83 +266,73 @@
 
     .footer-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.6rem;
     }
 
     .footer-links a {
-      color: var(--subtle);
+      color: #18181b;
+      background: var(--sticker-yellow);
       text-decoration: none;
-      transition: color 0.15s ease;
+      padding: 0.22rem 0.55rem;
+      border: 2px solid #18181b;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
+
+    .footer-links a:nth-child(2) { background: var(--sticker-blue); }
+    .footer-links a:nth-child(3) { background: var(--sticker-mint); }
 
     .footer-links a:hover {
-      color: var(--accent);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--shadow);
     }
 
     @media (max-width: 520px) {
-      body { padding: 1.75rem 1rem 5.5rem; }
-      .topbar { margin-bottom: 2.5rem; }
-      .card-top { flex-wrap: wrap; }
+      body { padding: 2rem 1rem 6rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Ken Noh</h1>
-      <div class="exp-strip" aria-label="Experience" style="margin-bottom: 1rem;">
-        <div class="exp-pill now">
-          <span>Jain Global</span>
-          <span class="role">now</span>
-        </div>
-        <div class="exp-pill">
-          <span>IMC Trading</span>
-          <span class="role">prev</span>
-        </div>
-        <div class="exp-pill">
-          <span>Zip</span>
-          <span class="role">prev</span>
-        </div>
+      <div class="name-wrap">
+        <h1>Ken Noh</h1>
       </div>
-      <p class="bio">
-        Running enjoyer and aspiring competitive eater.
-      </p>
+
+      <div class="sticker-row" aria-label="Experience">
+        <span class="sticker s-now">Jain Global <span class="tag">now</span></span>
+        <span class="sticker s-prev1">IMC Trading <span class="tag">prev</span></span>
+        <span class="sticker s-prev2">Zip <span class="tag">prev</span></span>
+      </div>
+
+      <div class="sticker-row" aria-label="Interests">
+        <span class="sticker s-run">🏃 Running enjoyer</span>
+        <span class="sticker s-eat">🍔 Aspiring competitive eater</span>
+      </div>
     </header>
 
     <section aria-labelledby="projects-heading">
-      <div class="section-head">
-        <h2 id="projects-heading">Side Projects</h2>
-      </div>
+      <h2 id="projects-heading" class="section-label">Side Projects</h2>
       <div class="projects">
         <a class="card" href="https://chudrun.kennoh.xyz" target="_blank" rel="noopener noreferrer">
           <div class="card-top">
             <div class="card-title-wrap">
+              <span class="swatch" aria-hidden="true"></span>
               <span class="card-title">ChudRun</span>
-              <span class="card-arrow">↗</span>
             </div>
+            <span class="card-arrow">↗</span>
           </div>
-          <p class="card-desc">
-            Run to eat
-          </p>
+          <p class="card-desc">Run to eat</p>
         </a>
 
         <a class="card" href="https://datenight.kennoh.xyz" target="_blank" rel="noopener noreferrer">
           <div class="card-top">
             <div class="card-title-wrap">
+              <span class="swatch" aria-hidden="true"></span>
               <span class="card-title">DateNight NYC</span>
-              <span class="card-arrow">↗</span>
             </div>
+            <span class="card-arrow">↗</span>
           </div>
           <p class="card-desc">
             Curated date-night planner across Manhattan, Brooklyn, and Queens.
@@ -457,9 +342,10 @@
         <a class="card" href="https://github.com/SquareDorito" target="_blank" rel="noopener noreferrer">
           <div class="card-top">
             <div class="card-title-wrap">
+              <span class="swatch" aria-hidden="true"></span>
               <span class="card-title">KLI</span>
-              <span class="card-arrow">↗</span>
             </div>
+            <span class="card-arrow">↗</span>
           </div>
           <p class="card-desc">
             Web-based workspace pairing a project sidebar with persistent tmux &amp; CLI sessions.
@@ -479,16 +365,5 @@
       </div>
     </footer>
   </div>
-
-  <script>
-    // Card spotlight hover
-    document.querySelectorAll(".card").forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-        card.style.setProperty("--my", `${e.clientY - rect.top}px`);
-      });
-    });
-  </script>
 </body>
 </html>
