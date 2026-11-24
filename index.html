@@ -241,6 +241,41 @@
       color: var(--muted);
     }
 
+    .comic-bubble {
+      position: relative;
+      display: inline-block;
+      margin-top: 0.7rem;
+      padding: 0.45rem 0.75rem;
+      background: #fef9c3;
+      color: #18181b;
+      border: 2px solid #18181b;
+      border-radius: 10px;
+      box-shadow: 3px 3px 0 #18181b;
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .comic-bubble::before {
+      content: "";
+      position: absolute;
+      top: -9px;
+      left: 16px;
+      border-width: 0 7px 9px 7px;
+      border-style: solid;
+      border-color: transparent transparent #18181b transparent;
+    }
+
+    .comic-bubble::after {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 18px;
+      border-width: 0 5px 7px 5px;
+      border-style: solid;
+      border-color: transparent transparent #fef9c3 transparent;
+    }
+
     /* Fixed Bottom Bar */
     footer {
       position: fixed;
@@ -317,6 +352,22 @@
     <section aria-labelledby="projects-heading">
       <h2 id="projects-heading" class="section-label">Side Projects</h2>
       <div class="projects">
+        <a class="card" href="https://mta.kennoh.xyz" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="swatch" aria-hidden="true"></span>
+              <span class="card-title">MTA Kindle</span>
+            </div>
+            <span class="card-arrow">↗</span>
+          </div>
+          <p class="card-desc">
+            Real-time NYC subway departure board rendered for Kindle e-ink via TRMNL BYOS.
+          </p>
+          <div class="comic-bubble">
+            Live auto-refreshing e-ink board — click to watch the latest 800x480 PNG render!
+          </div>
+        </a>
+
         <a class="card" href="https://chudrun.kennoh.xyz" target="_blank" rel="noopener noreferrer">
           <div class="card-top">
             <div class="card-title-wrap">
@@ -338,19 +389,6 @@
           </div>
           <p class="card-desc">
             Curated date-night planner across Manhattan, Brooklyn, and Queens.
-          </p>
-        </a>
-
-        <a class="card" href="https://github.com/SquareDorito/mta-kindle" target="_blank" rel="noopener noreferrer">
-          <div class="card-top">
-            <div class="card-title-wrap">
-              <span class="swatch" aria-hidden="true"></span>
-              <span class="card-title">MTA Kindle</span>
-            </div>
-            <span class="card-arrow">↗</span>
-          </div>
-          <p class="card-desc">
-            Real-time NYC subway departure board rendered for Kindle e-ink via TRMNL BYOS.
           </p>
         </a>
 
