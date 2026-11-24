@@ -26,20 +26,22 @@
       --pill-bg: rgba(24, 24, 27, 0.045);
     }
 
-    html[data-theme="dark"] {
-      --bg: #0c0c0e;
-      --surface: rgba(24, 24, 27, 0.72);
-      --surface-hover: rgba(30, 30, 35, 0.92);
-      --text: #f4f4f5;
-      --muted: #a1a1aa;
-      --subtle: #71717a;
-      --border: rgba(255, 255, 255, 0.09);
-      --border-hover: rgba(255, 255, 255, 0.22);
-      --accent: #fb923c;
-      --accent-soft: rgba(251, 146, 60, 0.12);
-      --dot: rgba(255, 255, 255, 0.055);
-      --spotlight: rgba(251, 146, 60, 0.09);
-      --pill-bg: rgba(255, 255, 255, 0.06);
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0e;
+        --surface: rgba(24, 24, 27, 0.72);
+        --surface-hover: rgba(30, 30, 35, 0.92);
+        --text: #f4f4f5;
+        --muted: #a1a1aa;
+        --subtle: #71717a;
+        --border: rgba(255, 255, 255, 0.09);
+        --border-hover: rgba(255, 255, 255, 0.22);
+        --accent: #fb923c;
+        --accent-soft: rgba(251, 146, 60, 0.12);
+        --dot: rgba(255, 255, 255, 0.055);
+        --spotlight: rgba(251, 146, 60, 0.09);
+        --pill-bg: rgba(255, 255, 255, 0.06);
+      }
     }
 
     * {
@@ -390,16 +392,6 @@
 </head>
 <body>
   <div class="container">
-    <div class="topbar">
-      <div class="status-pill">
-        <span class="pulse" aria-hidden="true"></span>
-        <span>NYC · <span id="clock">--:--</span></span>
-      </div>
-      <button class="theme-btn" id="theme-toggle" type="button" aria-label="Toggle color theme">
-        Theme
-      </button>
-    </div>
-
     <header>
       <h1>Ken Noh</h1>
       <div class="exp-strip" aria-label="Experience" style="margin-bottom: 1rem;">
@@ -475,38 +467,6 @@
   </div>
 
   <script>
-    // Theme toggle (defaults to OS preference)
-    const root = document.documentElement;
-    const themeBtn = document.getElementById("theme-toggle");
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    function applyTheme(theme) {
-      root.setAttribute("data-theme", theme);
-      themeBtn.textContent = theme === "dark" ? "Light" : "Dark";
-    }
-
-    applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
-
-    themeBtn.addEventListener("click", () => {
-      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      localStorage.setItem("theme", next);
-      applyTheme(next);
-    });
-
-    // Live NYC clock
-    const clockEl = document.getElementById("clock");
-    function updateClock() {
-      clockEl.textContent = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/New_York",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      }).format(new Date());
-    }
-    updateClock();
-    setInterval(updateClock, 15000);
-
     // Card spotlight hover
     document.querySelectorAll(".card").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
