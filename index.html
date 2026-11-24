@@ -344,17 +344,29 @@
     }
 
     footer {
-      margin-top: 3.5rem;
-      padding-top: 1.5rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid var(--border);
+      padding: 0.9rem 1.25rem;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.75rem;
+      color: var(--subtle);
+    }
+
+    .footer-inner {
+      max-width: 680px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 0.75rem;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.75rem;
-      color: var(--subtle);
     }
 
     .footer-links {
@@ -384,7 +396,7 @@
     }
 
     @media (max-width: 520px) {
-      body { padding: 1.75rem 1rem 3rem; }
+      body { padding: 1.75rem 1rem 5.5rem; }
       .topbar { margin-bottom: 2.5rem; }
       .card-top { flex-wrap: wrap; }
     }
@@ -457,12 +469,14 @@
     </section>
 
     <footer>
-      <span>kennoh.xyz</span>
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="https://github.com/SquareDorito" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/kennoh" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:kennoh415@gmail.com">Email</a>
-      </nav>
+      <div class="footer-inner">
+        <span>kennoh.xyz</span>
+        <nav class="footer-links" aria-label="Footer links">
+          <a href="https://github.com/SquareDorito" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/kennoh" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:kennoh415@gmail.com">Email</a>
+        </nav>
+      </div>
     </footer>
   </div>
 
