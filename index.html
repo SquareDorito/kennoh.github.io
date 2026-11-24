@@ -402,35 +402,24 @@
 
     <header>
       <h1>Ken Noh</h1>
+      <div class="exp-strip" aria-label="Experience" style="margin-bottom: 1rem;">
+        <div class="exp-pill now">
+          <span>Jain Global</span>
+          <span class="role">now</span>
+        </div>
+        <div class="exp-pill">
+          <span>IMC Trading</span>
+          <span class="role">prev</span>
+        </div>
+        <div class="exp-pill">
+          <span>Zip</span>
+          <span class="role">prev</span>
+        </div>
+      </div>
       <p class="bio">
-        Software Engineer @ <strong>Jain Global</strong>. Previously at <strong>IMC Trading</strong> and <strong>Zip</strong>.
-        <br />
-        <span class="fun">Running enjoyer and aspiring competitive eater.</span>
+        Running enjoyer and aspiring competitive eater.
       </p>
-      <nav class="actions" aria-label="Links">
-        <a class="btn-link" href="https://github.com/SquareDorito" target="_blank" rel="noopener noreferrer">
-          GitHub <span class="arrow">↗</span>
-        </a>
-        <button class="btn-link" id="copy-email" type="button" data-email="kennoh415@gmail.com">
-          <span id="email-label">kennoh415@gmail.com</span> <span class="arrow">⧉</span>
-        </button>
-      </nav>
     </header>
-
-    <div class="exp-strip" aria-label="Experience">
-      <div class="exp-pill now">
-        <span>Jain Global</span>
-        <span class="role">now</span>
-      </div>
-      <div class="exp-pill">
-        <span>IMC Trading</span>
-        <span class="role">prev</span>
-      </div>
-      <div class="exp-pill">
-        <span>Zip</span>
-        <span class="role">prev</span>
-      </div>
-    </div>
 
     <section aria-labelledby="projects-heading">
       <div class="section-head">
@@ -525,22 +514,6 @@
         card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
         card.style.setProperty("--my", `${e.clientY - rect.top}px`);
       });
-    });
-
-    // Copy email button
-    const copyBtn = document.getElementById("copy-email");
-    const emailLabel = document.getElementById("email-label");
-    copyBtn.addEventListener("click", async () => {
-      const email = copyBtn.dataset.email;
-      try {
-        await navigator.clipboard.writeText(email);
-        emailLabel.textContent = "Copied!";
-        setTimeout(() => {
-          emailLabel.textContent = email;
-        }, 1600);
-      } catch {
-        window.location.href = `mailto:${email}`;
-      }
     });
   </script>
 </body>
